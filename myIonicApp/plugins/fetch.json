@@ -1,0 +1,26 @@
+{
+    "org.apache.cordova.console": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.console"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.ionic.keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "com.ionic.keyboard"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.mbppower.camerapreview": {
+        "source": {
+            "type": "registry",
+            "id": "com.mbppower.camerapreview"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

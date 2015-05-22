@@ -1,0 +1,23 @@
+{
+    "version": "0.0.8",
+    "name": "com.mbppower.camerapreview",
+    "cordova_name": "CameraPreview",
+    "description": "Cordova plugin that allows camera interaction from HTML code. Show camera preview popup on top of the HTML.",
+    "license": "Apache 2.0",
+    "repo": "https://github.com/mbppower/CordovaCameraPreview.git",
+    "issue": "https://github.com/mbppower/CordovaCameraPreview/issues",
+    "keywords": [
+        "Ionic",
+        "Cordova",
+        "Camera",
+        " Preview",
+        " Popup",
+        " Floating",
+        " Box"
+    ],
+    "platforms": [
+        "android",
+        "ios"
+    ],
+    "engines": []
+}

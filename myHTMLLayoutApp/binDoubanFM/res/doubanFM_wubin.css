@@ -1,0 +1,52 @@
+/* Common CSS */
+* {font-family: "Arial","Microsoft YAHEI","微软雅黑"; }
+html { margin: 0; padding: 0; background: none; }
+body { margin: 0; padding: 0; border:none; overflow: hidden;}
+.clear {clear:both;}
+
+/* 自定义垂直滚动条 */
+@set mini_scrollbar {
+	.base { width: 8px; }
+	:root { background:url(/res/images/slider_root.png)}
+	.base, .prev, .next, .next-page, .prev-page { background:none; border: none; }
+	.slider { background:#8fc6b5;}
+	.slider:hover { background:#2db58c;	}
+}
+
+/* 自定义菜单样式 */
+menu {background: #fff; border:1px #29a783 solid;}
+menu hr {border-top: #29a783 dashed 1px; border-bottom: none; margin:5px 0 5px 0;}
+menu li {padding:5px 20px 5px 20px; font-size: 12px;}
+menu li:current {background: #44a387; color:#fff;}
+menu li.last {margin-bottom: 4px;}
+menu li.first {margin-top: 2px;}
+menu p {background: #a8d9cb;margin:0 0 2px 0; padding:6px; font-size:12px; font-weight: bold; overflow:hidden;}
+.menu-switch {width:106px; height:15px; display: block;}
+.menu-on {background:url(/res/images/switch-on.gif) 82px 2px no-repeat;}
+.menu-off {background:url(/res/images/switch-off.gif) 82px 2px no-repeat;}
+.menu-disabled {background:url(/res/images/switch-disabled.gif) 82px 2px no-repeat;}
+.menu-disabled2 {color:#767676; text-decoration: line-through;}
+.menu-normal {}
+
+/* 搜索框 */
+widget.compound-edit, widget.compound-edit-ro {background-repeat:stretch; padding:2px; flow: horizontal; }
+widget.compound-edit { background-image:none; border:1px solid #b9d9cf; }
+widget.compound-edit[has-focus], widget.compound-edit-ro[has-focus] {border:1px solid #ebc3b6;}
+widget.compound-edit > widget[type=text] { background-image: none; padding: 0px; margin:* 2px;    width:*; font-size:12px; focus-on!: self.parent().has-focus = true; focus-off!: self.parent().has-focus = null; } 
+widget.compound-edit > widget[type=button] {background-image: url(/res/images/search_button_a.png); width:38px; height:21px; overflow:hidden; display: block; focus-on!: self.parent().has-focus = true; focus-off!: self.parent().has-focus = null; padding:0; cursor: pointer;}
+widget.compound-edit > widget[type=button]:hover {background-image: url(/res/images/search_button_b.png); transition: blend;}
+widget.compound-edit > widget[type=button]:active {background-image: url(/res/images/search_button_c.png); }
+
+
+/* 自定义title提示 */
+_service > popup[role=tooltip], popup.tip { 
+	width:max-intrinsic; 
+	background-color:#fff; 
+	font-size:14px;
+	color:#282828;
+	font-weight:normal;
+	line-height:24px;
+	border-left:4px solid #50B496;
+	padding:5px;
+}
+.tip hr {border-top: #29a783 dotted 1px; border-bottom: none; margin:2px 0 2px 0;}

@@ -1,0 +1,60 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+	<style>
+	body { background-image: url(/res/images/fontsForm.png);  }
+	a {display: block; overflow: hidden; height:50px; position: absolute; top:289px;}
+
+	#wrapper { margin: 5px; padding:0; width: 506px; height: 349px; overflow: hidden; border:none; position: relative; behavior: windowCommand; cursor: move;}
+	#cn_fonts_list, #en_fonts_list {position: absolute; top:83px; width:196px; height:149px; overflow:vertical; vertical-scrollbar: mini_scrollbar; background:#fff; border:1px solid #a1d7c8; cursor: default;}
+	#cn_fonts_list {left:33px; }
+	#en_fonts_list {left:269px; }
+	#cn_fonts_list option, #en_fonts_list option{background: #fff; padding: 0; width:185px; overflow: hidden; border-bottom:1px #a1d7c8 dashed;}
+	#cn_fonts_list option:hover, #en_fonts_list option:hover {background: #ffece6;}
+	#cn_fonts_list option:current, #en_fonts_list option:current {background: #a8e6d4;}
+	.font_view {font-size: 16px; color:#000; margin:4px 4px 2px 4px;}
+	.font_name {color:#9f9f9f; font-size:12px; margin:0 4px 4px 4px;}
+
+	#fontsizeBar {width:0; height:3px; overflow: hidden; position:absolute; top:260px; left:345px; background: #67bea4; }
+	#fontsizeBar_hslider {width:80px; height:20px; position: absolute; top:249px; left:343px; background: transparent; cursor: pointer;}
+	#fontsizeBar_hslider img {display: none; width:10px; height:20px; overflow:hidden;}
+	#fontsizeBar_hslider:hover img {display: block; background-color: #288b6d; foreground-image: none; }
+
+	#fontcolor1, #fontcolor2 {position: absolute; top: 255px; width:36px; height:11px; overflow: hidden; background:#000; opacity: 1; behavior:button;}
+	#fontcolor1 {left:106px;}
+	#fontcolor2 {left:158px;}
+	#fontcolor1:hover, #fontcolor2:hover {cursor: pointer; opacity: 0.7;}
+
+	#fonts_down {background-image: url(/res/images/fonts-down_a.png); left:0; width:168px; cursor: pointer; behavior: button;}
+	#fonts_down:hover {background-image: url(/res/images/fonts-down_b.png); transition: blend;}
+	#fonts_down:active {background-image: url(/res/images/fonts-down_c.png);}
+	#fonts_default {background-image: url(/res/images/fonts-default_a.png); left:344px; width: 106px; cursor: pointer; behavior: button;}
+	#fonts_default:hover {background-image: url(/res/images/fonts-default_b.png); transition: blend;}
+	#fonts_default:active {background-image: url(/res/images/fonts-default_c.png); }
+	#fonts_close {background-image: url(/res/images/fonts-ok_a.png); left:450; width:56px; cursor: pointer; behavior: button;}
+	#fonts_close:hover {background-image: url(/res/images/fonts-ok_b.png); transition: blend;}
+	#fonts_close:active {background-image: url(/res/images/fonts-ok_c.png); }
+	#fonts_close2 {position: absolute; top:9px; right:9px; width:20px; height: 20px; background-image: url(/res/images/close-button.png); behavior: button; cursor: pointer;}
+	</style>
+</head>
+
+<body>
+	<div id="wrapper" command="window-caption">
+		<select id="cn_fonts_list" size="5">
+			<span>请稍候...</span>
+		</select>
+		<select id="en_fonts_list" size="5">
+			<span>Please wait...</span>
+		</select>
+		<div id="fontcolor1">&nbsp;</div>
+		<div id="fontcolor2">&nbsp;</div>
+		<div id="fontsizeBar">&nbsp;</div>
+		<input id="fontsizeBar_hslider" type="hslider" min="0" max="80" value="0" />
+		<a id="fonts_down">&nbsp;</a>
+		<a id="fonts_default">&nbsp;</a>
+		<a id="fonts_close">&nbsp;</a>
+		<div id="fonts_close2">&nbsp;</div>
+	</div>
+</body>
+</html>

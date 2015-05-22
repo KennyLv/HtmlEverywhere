@@ -1,0 +1,95 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+  <style>
+
+  body { background-image: url(/res/images/eqForm.png); }
+  #wrapper { margin: 5px; padding:0; width: 400px; height: 346px; overflow: hidden; border:none; position: relative; behavior: windowCommand; cursor: move; }
+
+  button[type="checkbox"] {foreground:url(/res/images/switch-off.gif) 2px 6px no-repeat; background-image:none; width:370px; height:26px; display: block; position: absolute;}
+  button[type="checkbox"]:checked {foreground:url(/res/images/switch-on.gif) 2px 6px no-repeat;}
+  #enableEQ {top:8px; left:114px; width:40px; overflow: hidden;}
+
+  #eqListWrapper {position: absolute; top:55px; left:192px; width:113px; height: 22px; overflow: hidden;  }
+  #eqList {background:none; border: none; overflow: hidden; cursor: pointer;}
+  #eqList caption {margin:0; padding:2px; background:none; color:#000; font-size: 12px; line-height: 12px; width:107px; height:16px; border: 1px solid #3bc79d;}
+  #eqList caption:hover {border-color: #048961;} 
+  #eqList button {background-image: none;}
+  #eqList option {color:#000; background: #fff; padding: 2px; overflow: hidden; }
+  #eqList option:hover {background: #9be3cd; color:#000;}
+
+  #eq_pre {display: block; width:57px; height: 22px; position: absolute; left:309px; top:55px; background:url(/res/images/eq_pre_a.png) no-repeat; cursor: pointer; behavior:button; transition: blend;}
+  #eq_pre:hover {background-image:url(/res/images/eq_pre_b.png)}
+  #eq_pre:active {background-image:url(/res/images/eq_pre_c.png)}
+
+  #eqBar {width:0; height:3px; overflow: hidden; position:absolute; top:260px; left:345px; background: #67bea4; }
+	.eqSlider {position:absolute; width:16px; background: transparent; cursor: pointer;}
+	.eqSlider img {display: block; width:16px; height:8px; overflow:hidden; background-color: #288b6d; foreground-image: none;}
+	.eqSlider:hover img {background-color: #035c41; foreground-image: none; }
+	#eq0_slider {height:222px; top:53px; left:27px; }
+	#eq1_slider {height:163px; top:90px; left:101px; }
+	#eq2_slider {height:163px; top:90px; left:129px; }
+	#eq3_slider {height:163px; top:90px; left:157px; }
+	#eq4_slider {height:163px; top:90px; left:185px; }
+	#eq5_slider {height:163px; top:90px; left:213px; }
+	#eq6_slider {height:163px; top:90px; left:241px; }
+	#eq7_slider {height:163px; top:90px; left:269px; }
+	#eq8_slider {height:163px; top:90px; left:297px; }
+	#eq9_slider {height:163px; top:90px; left:325px; }
+	#eq10_slider {width:16px; height:163px; position: absolute; top:90px; left:353px; background: transparent; cursor: pointer;}
+	.eqBar { overflow: hidden; width:4px; position:absolute; background: #b9e6d8; }
+	#eq0_bar {height:73px; bottom:70px; left:35px;}
+	#eq1_bar {height:80px; bottom:92px; left:109px;}
+  #eq2_bar {height:80px; bottom:92px; left:137px;}
+  #eq3_bar {height:80px; bottom:92px; left:165px;}
+  #eq4_bar {height:80px; bottom:92px; left:193px;}
+  #eq5_bar {height:80px; bottom:92px; left:221px;}
+  #eq6_bar {height:80px; bottom:92px; left:249px;}
+  #eq7_bar {height:80px; bottom:92px; left:277px;}
+  #eq8_bar {height:80px; bottom:92px; left:305px;}
+  #eq9_bar {height:80px; bottom:92px; left:333px;}
+  #eq10_bar {height:80px; bottom:92px; left:361px;}
+  button[type="checkbox"]:checked {foreground:url(/res/images/switch-on.gif) 2px 6px no-repeat;}
+
+  #eq_close {display: block; overflow: hidden; width:56px; height:50px; position: absolute; top:296px; right:0; background-image: url(/res/images/fonts-ok_a.png);  cursor: pointer; behavior: button;}
+  #eq_close:hover {background-image: url(/res/images/fonts-ok_b.png); transition: blend;}
+  #eq_close:active {background-image: url(/res/images/fonts-ok_c.png); }
+  #eq_close2 {position: absolute; top:9px; right:9px; width:20px; height: 20px; background-image: url(/res/images/close-button.png); behavior: button; cursor: pointer;}
+  </style>
+
+</head>
+
+<body>
+  <div id="wrapper" command="window-caption">
+    <button type="checkbox" id="enableEQ" checked></button>
+    <div id="eqListWrapper"></div> <!-- 只能在程序中动态生成整个下拉框代码，而不能仅仅生成<option /> -->
+    <a id="eq_pre">&nbsp;</a>
+    <div id="eq0_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq0_slider" type="vslider" class="eqSlider" min="1" max="36" value="12" />
+    <div id="eq1_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq1_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq2_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq2_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq3_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq3_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq4_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq4_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq5_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq5_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq6_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq6_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq7_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq7_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq8_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq8_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq9_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq9_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <div id="eq10_bar" class="eqBar">&nbsp;</div> 
+    <input id="eq10_slider" type="vslider" class="eqSlider" min="0" max="30" value="15" />
+    <a id="eq_close">&nbsp;</a>
+    <div id="eq_close2">&nbsp;</div>
+  </div>
+</body>
+</html>

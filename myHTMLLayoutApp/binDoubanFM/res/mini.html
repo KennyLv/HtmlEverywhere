@@ -1,0 +1,46 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+	<style>
+	body { background: url(/res/images/miniForm.png) no-repeat; }
+
+	#wrapper { margin: 5px; padding:0; width: 117px; height: 102px; overflow: hidden; border:none; position: relative; }
+	#wrapper:hover #controls {display: block;}
+
+	#caption {position: absolute; top:0; left: 0; width:15px; height:100px; overflow: hidden; behavior: windowCommand; cursor: move;}
+
+	#album_image {position: absolute; top:1px; left:16px; size:100px; overflow: hidden; border:none; background-repeat:stretch keep-ratio; background-position: 50% 50%; }
+	#liked {width:19px; height: 48px; position: absolute; top: 1px; left: 80px; background-image: url(/res/images/mini_liked_mark.png); display:none;}
+	
+	#controls {position: absolute; top:1px; left:16px; size:100px; overflow: hidden; z-index: 999; background-image:url(/res/images/miniControls.png); display: none;}
+	#song_title, #artist {position: absolute; left:0; width:100px; height:20px; white-space: nowrap; text-overflow: ellipsis; font-family: "Kartika"; text-align: center; color:#fff;}
+	#song_title {top:82px; font-size:12px; behavior:button; cursor: pointer;}
+	#artist {top:68px; font-size:10px; behavior:button; cursor: pointer;}
+	#like, #del, #next {position: absolute; top:44px; width:22px; height:19px; display: block; behavior:button; cursor: pointer;}
+	#pause {position: absolute; top:9px; left:10px; width:19px; height:21px; display: block; behavior:button; cursor: pointer;}
+	#like:hover, #del:hover, #next:hover, #pause:hover {opacity: 0.55;}
+	#like:active, #del:active, #next:active, #pause:active {cursor: pointer; opacity: 1;}
+	#pause {background-image: url(/res/images/miniPause.png); }
+	#like {left:8px; background-image: url(/res/images/mini_like.png); }
+	#del {left:40px; background-image: url(/res/images/miniDel.png); }
+	#next {left:72px; background-image: url(/res/images/miniNext.png); }
+	</style>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="caption" command="window-caption">&nbsp;</div>
+		<div id="album_image">&nbsp;</div>
+		<div id="liked">&nbsp;</div>
+		<div id="controls">
+			<div id="song_title">... 请稍候 ...</div>
+			<div id="artist">优雅地欣赏音乐</div>
+			<a id="pause">&nbsp;</a>
+			<a id="like">&nbsp;</a>
+			<a id="del">&nbsp;</a>
+			<a id="next">&nbsp;</a>
+		</div>
+	</div>
+</body>
+</html>

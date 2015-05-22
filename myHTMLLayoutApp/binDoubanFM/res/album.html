@@ -1,0 +1,51 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+	<style>
+	body { background-image: url(/res/images/albumForm.png); }
+	a {display: block; overflow: hidden;}
+	#wrapper { margin: 5px; padding:0; width: 672px; height: 324px; overflow: hidden; border:none; position: relative; behavior: windowCommand; cursor: move; }
+
+	#album_image {position:absolute; top:2px; left:30px; size:320px; overflow:hidden; border:none; background-repeat:stretch keep-ratio; background-position: 50% 50%;}
+
+	#artist, #album_title, #album_intro, #song_title {position: absolute; margin: 0; padding: 0; color: #fff; font-family: "Arial","微软雅黑";}
+	#artist {top:20px; left: 370px; font-size: 14px; white-space: nowrap; text-overflow: ellipsis; }
+	#album_title {top:45px; left:370px; font-size: 18px; white-space: nowrap; text-overflow: ellipsis; }
+	#album_intro {top:73px; left:370px; font-size: 14px; line-height:24px; width:285px; height:140px; overflow:auto; vertical-scrollbar: mini_scrollbar; }
+	#song_title {top:232px; left:370px; font-size: 20px; white-space: nowrap; text-overflow: ellipsis; font-weight: bold;}
+
+	#posBar {background-color: #077756; width:0; height:2px; position: absolute; top:270px; left:352px; overflow: hidden;}
+	
+	#play {position: absolute; top:284px; left:368px; width:18px; height: 26px; overflow: hidden; background-image: url(/res/images/albumForm_pause.png); cursor: pointer; behavior:button;}
+	#play:hover {opacity: 0.55;}
+	#play:active {opacity: 1;}
+	#posLabel {position:absolute; left:396px; top:289px; color:#fff; font-size: 12px; font-family: "Courier"; line-height:16px; width:90px; height:16px;}
+	#like, #del, #next {position: absolute; top:284px; width:30px; height:26px; overflow: hidden; behavior:button; cursor: pointer; }
+	#like:hover, #del:hover, #next:hover {opacity: 0.55;}
+	#like:active, #del:active, #next:active {opacity: 1;}
+	#like {left:536px; background-image: url(/res/images/albumForm_like.png)}
+	#del {left:582px; background-image: url(/res/images/albumForm_del.png)}
+	#next {left:626px; background-image: url(/res/images/albumForm_next.png)}
+
+	#album_close {position: absolute; top:9px; right:9px; width:20px; height: 20px; background-image: url(/res/images/close-button.png); behavior: button; cursor: pointer;}
+	</style>
+</head>
+
+<body>
+	<div id="wrapper" command="window-caption">
+		<div id="album_image">&nbsp;</div>
+		<div id="artist">...</div>
+		<div id="album_title">专辑...</div>
+		<div id="album_intro">专辑介绍...</div>
+		<div id="song_title">~ 优雅地欣赏音乐 ~</div>
+		<div id="posBar">&nbsp;</div>
+		<a id="play">&nbsp;</a>
+		<span id="posLabel">--:-- / --:--</span>
+		<a id="like">&nbsp;</a>
+		<a id="del">&nbsp;</a>
+		<a id="next">&nbsp;</a>
+		<div id="album_close">&nbsp;</div>
+	</div>
+</body>
+</html>

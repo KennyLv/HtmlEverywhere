@@ -1,0 +1,128 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+  <style>
+
+  body { background-color: #fff; }
+
+  #title {width:100%%; height:38px; border-bottom: 2px #b9d9cf solid; background: url(/res/images/history_title.png) no-repeat; behavior: windowCommand; cursor: move; position: relative;}
+
+  #search_box {position: absolute; top:5px; right:4px; width:180px;}
+
+  button[type="checkbox"] {foreground:url(/res/images/switch-off.gif) 2px 6px no-repeat; background-image:none; font-size:14px; padding-left: 32px; margin: 5px 0 5px 8px;}
+  button[type="checkbox"]:checked {foreground:url(/res/images/switch-on.gif) 2px 6px no-repeat; background: #ceede3;}
+  button[type="checkbox"]:hover {background:#ffece6; transition: blend;}
+
+  #fresh_like_wrapper {display: inline-block; width:90px; overflow: hidden; margin:5px 18px 5px 0; font-size:14px; }
+  #fresh_like {opacity: 0; behavior:button; cursor: pointer;}
+  #fresh_like:hover {color:#bb0000; transition:blend; }
+
+  .sort_wrapper {display: inline-block; width:70px; font-size:14px; line-height: 24px; text-align:center; }
+  .sort_wrapper:hover {background-color: #ffece6; transition: blend;}
+  .sort {display: inline-block; width:70px; behavior:button; cursor: pointer;}
+
+  table { background:white; border-top:1px solid #a9dacc; border-bottom:1px solid #a9dacc; width:100%%; height:100%%; margin-right:4px; behavior:grid; overflow:auto; flow: table-fixed; font-size:12px; border-spacing:0; white-space: nowrap; text-overflow: ellipsis; context-menu: selector(menu#table-menu); vertical-scrollbar: mini_scrollbar;}
+
+  /* 列表第一栏标题 */
+  table th { color: #1e8466; font-size:16px; font-weight:bold; border-bottom:1px solid #a9dacc; padding:8px 0 8px 1px; background:#fff; text-align:left; white-space: nowrap; text-overflow: ellipsis; }
+
+  /* 列表行 */
+  table tr { height:24px; }
+  table tr:hover, table tr:nth-child(odd):hover {background: #BDE7DC;}
+  table tr:current ,table tr:nth-child(odd):current {background: #44a387; color:#fff;} 
+  table tr:current td {color:#fff;}
+  table tr:current td:hover {color:#E3C4B9;}
+  table tr:nth-child(odd) { background: #E3F5F0; }
+
+  /* 单元格 */
+  table td { padding:2px; border-right:1px solid #a9dacc; border-bottom:1px solid #a9dacc; text-align:left; padding-left:5px; white-space: nowrap; text-overflow: ellipsis; text-align:left; }
+  table td:nth-child(3) { font-weight:bold; } 
+  table td:nth-child(1), table td:nth-child(2) {padding:0 0 0 2px; text-align: center;} 
+  table td:nth-child(8) {border-right: 0;}
+  table td:hover { color:#279E7B; }
+
+  .table-like, .table-liked, .table-like-loading {width:20px; height:23px; margin:0; padding:0; overflow:hidden; cursor: pointer; behavior:button; display: block; }
+  .table-like {background:url(/res/images/toLike_1_a.png) no-repeat 0 0;}
+  .table-like:hover {background:url(/res/images/toLike_1_b.png) no-repeat 0 0;}
+  .table-liked {background:url(/res/images/liked_1.png) no-repeat 0 0;}
+  .table-liked:hover {background:url(/res/images/liked_1_b.png) no-repeat 0 0;}
+  .table-like-loading {background:url(/res/images/like-loading_1.png) no-repeat 0 0;}
+
+  #footer {border-top: 4px solid #298c6e; width:100%%; height:40px; position: relative;} 
+
+  #stat {position: absolute;top:13px; left:10px; font-size:12px; }
+
+  #page_nav {position: absolute; top:12px; right:10px; font-size: 12px;}
+  #pre, #next {width:57px; height:22px; overflow: hidden; border:0; cursor: pointer; display: inline-block; behavior:button;}
+  #pre {background: url(/res/images/pre_page_a.png) 0 -2px no-repeat;}
+  #pre:hover {background: url(/res/images/pre_page_b.png) 0 -3px no-repeat; transition: blend;}
+  #pre:active  {background: url(/res/images/pre_page_c.png) 0 -3px no-repeat;}
+  #next {background: url(/res/images/next_page_a.png) 0 -3px no-repeat;}
+  #next:hover {background: url(/res/images/next_page_b.png) 0 -3px no-repeat; transition: blend;}
+  #next:active {background: url(/res/images/next_page_c.png) 0 -3px no-repeat;}
+  #first, #last {width:31px; height:22px; overflow: hidden; border:0; cursor: pointer; display: inline-block; behavior:button;}
+  #first {background: url(/res/images/first_page_a.png) 0 -2px no-repeat;}
+  #first:hover {background: url(/res/images/first_page_b.png) 0 -2px no-repeat; transition: blend;}
+  #first:active  {background: url(/res/images/first_page_c.png) 0 -2px no-repeat;}
+  #last {background: url(/res/images/last_page_a.png) 0 -2px no-repeat;}
+  #last:hover {background: url(/res/images/last_page_b.png) 0 -2px no-repeat; transition: blend;}
+  #last:active {background: url(/res/images/last_page_c.png) 0 -2px no-repeat;}
+
+  </style>
+
+</head>
+
+<body>
+  <div id="title" command="window-caption">
+    <include src="search-box.html"></include>
+  </div>
+  <div id="options">
+    <button type="checkbox" id="show_like" title="包括尚未收听的曲目；&#13;且所列项目会比实际上的要少，&#13;--经常收听红心兆赫，可使该结果更加准确。">显示红心兆赫</button>
+    <a id="fresh_like_wrapper">
+      <span id="fresh_like" title="收听红心兆赫并刷新列表&#13;--经常收听红心兆赫，可使该结果更加准确。"> - 收听以刷新</span>
+    </a>
+    <a id="time_desc" class="sort_wrapper"><span id="time_desc_" class="sort">时间降序</span></a>
+    <a id="time_asc" class="sort_wrapper"><span id="time_asc_" class="sort">时间升序</span></a>
+    <a id="artist_asc" class="sort_wrapper"><span id="artist_asc_" class="sort">按人名排</span></a>
+    <a id="album_asc" class="sort_wrapper"><span id="album_asc_" class="sort">按专辑排</span></a>
+    <a id="channel_asc" class="sort_wrapper"><span id="channel_asc_" class="sort">按频道排</span></a>
+    <a id="genre_asc" class="sort_wrapper"><span id="genre_asc_" class="sort">按流派排</span></a>
+  </div>
+  <table width=100% fixedrows=1 fixedlayout id="list">
+    <tr>
+      <th width=24>&nbsp;</th>
+      <th width=24>&nbsp;</th>
+      <th width=50%>标题</th>
+      <th width=25%>艺术家</th>
+      <th width=25%>专辑</th>
+      <th width=60>频道</th>
+      <th width=80>流派</th>
+      <th width=80>收听时间</th>     
+    </tr>
+  </table>
+  <menu.context id="table-menu">
+    <li id="copyTitle_3" class="first">复制曲目名称</li>
+    <li id="baidu_3">百度搜索此音乐</li>
+    <hr />
+    <li id="addFavArtist_3">收藏艺术家</li>
+    <li id="addFavAlbum_3">收藏专辑</li>
+    <hr />
+    <li id="toDoubanAlbum_3">转到专辑详情</li>
+    <li id="baidu_img3" class="last">百度艺术家图片</li>
+  </menu>
+  <div id="footer">
+    <div id="stat">
+      本客户端累计收听<span id="count">0</span>首 -
+      加红心曲目约<span id="count_like">?</span>首<span style="color:#1aaa7e; cursor:pointer;" title="此数目为估计值，&#13;经常收听红心兆赫，可使该结果更加准确。">(?)</span>
+    </div>
+    <div id="page_nav">
+      <a id="first">&nbsp;</a><a id="pre">&nbsp;</a> 
+      &nbsp;第<span id="page_current">1</span> / <span id="page_count">0</span>页 &nbsp;     
+      <a id="next">&nbsp;</a><a id="last">&nbsp;</a>
+
+    </div>
+  </div>
+</body>
+</html>

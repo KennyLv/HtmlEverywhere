@@ -1,0 +1,45 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+	<style>
+	body { background-image: url(/res/images/loginForm.png); }
+	a {display: block; overflow: hidden; height:50px; position: absolute; top:171px;}
+	button {margin:0; padding:0; foreground:none;}
+	#wrapper { margin: 5px; padding:0; width: 331px; height: 231px; overflow: hidden; border:none; position: relative; behavior: windowCommand; cursor: move; }
+
+	input {width:196px; height:16px; background: transparent; border:1px solid #98d2c1; position: absolute; left:25px; overflow: hidden; padding:5px 5px 5px 78px; color:#000; font-size: 14px; line-height: 16px;}
+	input:hover {border:1px solid #2CB48B; outline:3px glow #2CB48B; transition: blend;}
+	#input_name {top:63px;}
+	#input_pass {top:115px;}
+
+	[autofocus]:focusable { assigned!: self:focus = true; }
+
+	#toLogin {background: url(/res/images/toLogin_a.png); width:115px; height:50px; position: absolute; top:171px; left:216px; cursor: pointer; opacity:1}
+	#toLogin:hover {background: url(/res/images/toLogin_b.png); foreground:none; transition: blend;}
+	#toLogin:active {background: url(/res/images/toLogin_c.png); foreground:none;}
+	#toLogin[disabled="disabled"] {opacity: 0.7;}
+	#toRegist {background-image: url(/res/images/toRegist_a.png); left:157px; width:59px; cursor: pointer; behavior: button;}
+	#toRegist:hover {background-image: url(/res/images/toRegist_b.png); transition: blend;}
+	#toRegist:active {background-image: url(/res/images/toRegist_c.png); }
+
+	#login_error {background-image: url(/res/images/login_error.png); position:absolute; left:0; top:171px; width:125px; height:50px; display: none;}
+	#login_loading {background-image: url(/res/images/loading.png); position:absolute; left:5px; top:176px; width:40px; height:40px; display: none;}
+	#login_loading2 {position:absolute; left:25px; top:185px; width:60px; height:40px; display: block;}
+	#login_close {position: absolute; top:9px; right:9px; width:20px; height: 20px; background-image: url(/res/images/close-button.png); behavior: button; cursor: pointer;}
+	</style>
+</head>
+
+<body>
+	<div id="wrapper" command="window-caption">
+		<input id="input_name" name="input_name" autofocus />
+		<input id="input_pass" name="input_pass" type="password" />
+		<button id="toLogin">&nbsp;</button>
+		<a id="toRegist" title="去豆瓣官网注册账号">&nbsp;</a>
+		<div id="login_error">&nbsp;</div>
+		<div id="login_loading">&nbsp;</div>
+		<div id="login_loading2">登录中...</div>		<
+		<div id="login_close">&nbsp;</div>
+	</div>
+</body>
+</html>

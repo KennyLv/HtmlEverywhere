@@ -1,0 +1,104 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+  <style>
+
+  body { background-image: url(/res/images/autoForm.png); }
+  #wrapper { margin: 5px; padding:0; width: 440px; height: 390px; overflow: hidden; border:none; position: relative; behavior: windowCommand; cursor: move; }
+
+  /* 自动加心 / 自动屏蔽 选项卡 */
+  #tabs { behavior: tabs; }
+  #tabs .strip {position: absolute; top: 40px; left: 0; width: 55px; height: 110px; overflow: hidden; }
+  #tabs .strip [panel] {width: 55px; height:55px; overflow:hidden; cursor: pointer; }
+  /* 自动加心 / 自动屏蔽 区域 */
+  #tabs > [name] {display: none; width: 385px; height: 296px; overflow: hidden;}
+  #tabs > [name][selected] {display: block;}
+  /* 选项卡 图标 */
+  #tabs .strip [panel=autoLike] {background: url(/res/images/autoLikeIcon_a.png) no-repeat;}
+  #tabs .strip [panel=autoLike]:hover {background: url(/res/images/autoLikeIcon_b.png) no-repeat; transition: blend;}
+  #tabs .strip [panel=autoLike][selected] {background: url(/res/images/autoLikeIcon_c.png) no-repeat; }
+  #tabs .strip [panel=autoDel] {background: url(/res/images/autoDelIcon_a.png) no-repeat;}
+  #tabs .strip [panel=autoDel]:hover {background: url(/res/images/autoDelIcon_b.png) no-repeat; transition: blend; }
+  #tabs .strip [panel=autoDel][selected] {background: url(/res/images/autoDelIcon_c.png) no-repeat; }
+  #tabs #autoLike_area, #tabs #autoDel_area {position:absolute; top:40px; left:55px; width:385px; height:296px;}
+  #tabs #autoLike_area {background: url(/res/images/autoLike_area.png); }
+  #tabs #autoDel_area {background: url(/res/images/autoDel_area.png); }
+
+
+  input {margin:0 0 10px 15px;}
+  
+  [autofocus]:focusable { assigned!: self:focus = true; }
+  button[type="checkbox"] {foreground:url(/res/images/switch-off.gif) 2px 6px no-repeat; background-image:none; width:370px; height:26px; display: block; position: absolute; left:15px;}
+  button[type="checkbox"]:checked {foreground:url(/res/images/switch-on.gif) 2px 6px no-repeat;}
+  #isLikeByTitle, #isDelByTitle {top:16px;}
+  #isLikeByArtist, #isDelByArtist {top:95px;}
+  #isLikeByAlbum, #isDelByAlbum {top:174px;}
+  #isDelEnglish {top:253px;}
+  
+  input {width:269px; height:16px; background: transparent; border:1px solid #98d2c1; position: absolute; left:25px; overflow: hidden; padding:3px 28px 3px 28px; color:#000; font-size: 14px; line-height: 16px; position: absolute; left:34px;}
+  input[disabled="disabled"] {color:#acacac;}
+  #likeSongTitle, #delSongTitle {top:49px;}
+  #likeSongArtist, #delSongArtist {top:128px;}
+  #likeSongAlbum, #delSongAlbum {top:207px;}
+
+  .autoAdd {width:24px; height:24px; position: absolute; left:336px; background: url(/res/images/autoAddNow_a.png); z-index: 999; display: block; behavior:button; transition: blend; cursor: pointer;}
+  .autoAdd:hover {background: url(/res/images/autoAddNow_b.png);}
+  .autoAdd:active {background: url(/res/images/autoAddNow_c.png);}
+  #autoAddLikeArtist, #autoAddDelArtist {top:128px;}
+  #autoAddLikeAlbum, #autoAddDelAlbum {top:207px;}
+ 
+  #auto_close {display: block; overflow: hidden; width:56px; height:50px; position: absolute; top:340px; right:0; background-image: url(/res/images/fonts-ok_a.png);  cursor: pointer; behavior: button;}
+  #auto_close:hover {background-image: url(/res/images/fonts-ok_b.png); transition: blend;}
+  #auto_close:active {background-image: url(/res/images/fonts-ok_c.png); }
+  #auto_close2 {position: absolute; top:9px; right:9px; width:20px; height: 20px; background-image: url(/res/images/close-button.png); behavior: button; cursor: pointer;}
+  </style>
+
+</head>
+
+<body>
+  <div id="wrapper" command="window-caption">
+    
+    <div id="tabs"> <!-- 选项卡 容器 -->
+      <div class="strip"> <!-- 类名 strip 不可更改 选项卡 图标-->
+        <div panel="autoLike" selected="true" id="autoLikeIcon" title="自动加红心选项">&nbsp;</div>
+        <div panel="autoDel" id="autoDelIcon" title="自动屏蔽选项">&nbsp;</div>
+      </div>
+      <!-- 选项卡面板 -->
+      <!-- 自动加红心 -->
+      <div name="autoLike" id="autoLike_area" selected="true" class="window-mover" command="window-caption">
+          <button type="checkbox" id="isLikeByTitle" checked></button>
+          <input id="likeSongTitle" class="auto" titleid="input_tip" autofocus />
+          <button type="checkbox" id="isLikeByArtist" checked></button>
+          <input id="likeSongArtist" class="auto" titleid="input_tip" />
+          <a id="autoAddLikeArtist" class="autoAdd" title="添加正在播放的艺术家">&nbsp;</a>
+          <button type="checkbox" id="isLikeByAlbum" checked></button>
+          <input id="likeSongAlbum" class="auto" titleid="input_tip" />
+          <a id="autoAddLikeAlbum" class="autoAdd" title="添加正在播放的专辑">&nbsp;</a>
+      </div>
+      <!-- 自动屏蔽 -->
+      <div name="autoDel" id="autoDel_area" class="window-mover" command="window-caption">
+          <button type="checkbox" id="isDelByTitle" checked></button>
+          <input id="delSongTitle" class="auto" titleid="input_tip" autofocus />
+          <button type="checkbox" id="isDelByArtist" checked></button>
+          <input id="delSongArtist" class="auto" titleid="input_tip" disabled />
+          <a id="autoAddDelArtist" class="autoAdd" title="添加正在播放的艺术家">&nbsp;</a>
+          <button type="checkbox" id="isDelByAlbum" checked></button>
+          <input id="delSongAlbum" class="auto" titleid="input_tip" />
+          <a id="autoAddDelAlbum" class="autoAdd" title="添加正在播放的专辑">&nbsp;</a>
+          <button type="checkbox" id="isDelEnglish" titleid="del_tip"></button>
+      </div>
+    </div>
+    <popup id="input_tip" class="tip">
+      按关键字自动加红心或屏蔽，<br />关键字之间请用<span style="background:#fcffb6">,&nbsp;</span>或<span style="background:#fcffb6">，</span>分割。
+    </popup>
+    <popup id="del_tip" class="tip">
+      仅自动屏蔽以下频道中的英文歌曲：<br />新歌、九零、八零、七零、民谣、小清新、摇滚、电影原声。
+    </popup>   
+    <a id="auto_close">&nbsp;</a>
+    <div id="auto_close2">&nbsp;</div>
+
+  </div>
+</body>
+</html>

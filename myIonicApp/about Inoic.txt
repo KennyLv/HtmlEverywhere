@@ -1,0 +1,175 @@
+﻿
+D:\HBuild_WorkSpace>npm install -g cordova ionic
+C:\Users\lv_qing\AppData\Roaming\npm\ionic -> C:\Users\lv_qing\AppData\Roaming\npm\node_modules\ionic\bin\ionic
+C:\Users\lv_qing\AppData\Roaming\npm\cordova -> C:\Users\lv_qing\AppData\Roaming\npm\node_modules\cordova\bin\cordova
+ionic@1.3.22 C:\Users\lv_qing\AppData\Roaming\npm\node_modules\ionic
+├── proxy-middleware@0.7.0
+├── connect-livereload@0.5.2
+├── progress@1.1.7
+├── open@0.0.5
+├── colors@0.6.2
+├── underscore@1.7.0
+├── q@1.0.1
+├── ncp@0.4.2
+├── crc@3.2.1
+├── async@0.9.0
+├── shelljs@0.2.6
+├── semver@4.3.3
+├── cross-spawn@0.2.3 (lru-cache@2.6.1)
+├── event-stream@3.0.20 (from@0.1.3, stream-combiner@0.0.4, duplexer@0.1.1, map-stream@0.0.5, split@0.2.10, pause-stream@0.0.11, through@2.3.7
+)
+├── cli-table@0.3.1 (colors@1.0.3)
+├── form-data@0.1.4 (mime@1.2.11, combined-stream@0.0.7)
+├── optimist@0.6.0 (wordwrap@0.0.2, minimist@0.0.10)
+├── finalhandler@0.2.0 (escape-html@1.0.1, debug@2.0.0)
+├── connect@3.1.1 (utils-merge@1.0.0, parseurl@1.3.0, finalhandler@0.1.0, debug@1.0.4)
+├── opbeat-ionic@1.1.3 (json-stringify-safe@5.0.0, console-log-level@1.0.0, stackman@0.2.2, after-all@2.0.2)
+├── tiny-lr-fork@0.0.5 (debug@0.7.4, qs@0.5.6, faye-websocket@0.4.4, noptify@0.0.3)
+├── serve-static@1.7.1 (utils-merge@1.0.0, escape-html@1.0.1, parseurl@1.3.0, send@0.10.1)
+├── request@2.51.0 (json-stringify-safe@5.0.0, caseless@0.8.0, aws-sign2@0.5.0, forever-agent@0.5.2, oauth-sign@0.5.0, stringstream@0.0.4, tun
+nel-agent@0.4.0, qs@2.3.3, node-uuid@1.4.3, mime-types@1.0.2, combined-stream@0.0.7, tough-cookie@0.13.0, http-signature@0.10.1, hawk@1.1.1, form
+-data@0.2.0, bl@0.9.4)
+├── vinyl-fs@0.3.7 (graceful-fs@3.0.6, lodash@2.4.1, vinyl@0.4.6, strip-bom@1.0.0, mkdirp@0.5.0, glob-stream@3.1.18, through2@0.6.5, glob-watc
+her@0.0.6)
+├── unzip@0.1.9 (setimmediate@1.0.2, pullstream@0.4.1, match-stream@0.0.2, readable-stream@1.0.33, binary@0.3.0, fstream@0.1.31)
+├── prompt@0.2.12 (pkginfo@0.3.0, revalidator@0.1.8, read@1.0.5, winston@0.6.2, utile@0.2.1)
+├── gulp@3.8.8 (interpret@0.3.10, archy@0.0.2, pretty-hrtime@0.2.2, deprecated@0.0.1, semver@3.0.1, minimist@1.1.1, tildify@1.0.0, chalk@0.5.1
+, orchestrator@0.3.7, gulp-util@3.0.4, liftoff@0.12.1)
+├── archiver@0.5.1 (lodash@2.4.1, readable-stream@1.1.13, zip-stream@0.1.4, lazystream@0.1.0, file-utils@0.1.5)
+├── cheerio@0.19.0 (entities@1.1.1, dom-serializer@0.1.0, css-select@1.0.0, htmlparser2@3.8.2, lodash@3.7.0)
+├── xml2js@0.4.4 (sax@0.6.1, xmlbuilder@2.6.2)
+└── npm@2.1.3
+
+cordova@5.0.0 C:\Users\lv_qing\AppData\Roaming\npm\node_modules\cordova
+├── underscore@1.7.0
+├── q@1.0.1
+├── nopt@3.0.1 (abbrev@1.0.5)
+└── cordova-lib@5.0.0 (osenv@0.1.0, mime@1.2.11, valid-identifier@0.0.1, properties-parser@0.2.3, bplist-parser@0.0.6, unorm@1.3.3, semver@2.1
+.0, shelljs@0.3.0, dep-graph@1.1.0, rc@0.5.2, xcode@0.6.7, d8@0.4.4, elementtree@0.1.5, npmconf@0.1.16, through2@0.6.3, request@2.47.0, glob@4.0.
+6, tar@1.0.2, cordova-registry-mapper@1.1.3, cordova-app-hello-world@3.9.0, init-package-json@1.5.0, plist@1.1.0, npm@1.3.4, cordova-js@3.9.0)
+
+D:\HBuild_WorkSpace>ionic start myApp tabs
+Creating Ionic app in folder D:\HBuild_WorkSpace\myApp based on tabs project
+
+Downloading: https://github.com/driftyco/ionic-app-base/archive/master.zip
+[=============================]  100%  0.0s
+
+Downloading: https://github.com/driftyco/ionic-starter-tabs/archive/master.zip
+[=============================]  100%  0.0s
+
+Update config.xml
+Initializing cordova project
+Updated the hooks directory to have execute permissions
+running cordova plugin add org.apache.cordova.device
+WARNING: org.apache.cordova.device has been renamed to cordova-plugin-device. You may not be getting the latest version! We suggest you `cordova
+plugin rm org.apache.cordova.device` and `cordova plugin add cordova-plugin-device`.
+npm http GET http://registry.cordova.io/org.apache.cordova.device
+Fetching plugin "org.apache.cordova.device" via cordova plugins registry
+npm http 200 http://registry.cordova.io/org.apache.cordova.device
+npmFetching from cordova plugins registry failed: Unexpected end of input
+{"_id":"org.apache.cordova.device","_rev":"27-239c4a0ebac0bd865e615500267274b4","name":"org.apache.cordova.device","description":"Cordova Device
+Plugin","dist-tags":{"latest":"0.3.0"},"versions":{"0.3.0":{"version":"0.3.0","name":"org.apache.cordova.device","cordova_name":"Device","descrip
+tion":"Cordova Device Plugin","license":"Apache 2.0","repo":"https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git","issue":"https://
+issues.apache.org/jira/browse/CB/component/12320648","keywords":["cordova","device"],"platforms":["firefoxos","tizen","android","amazon-fireos","
+ubuntu","ios","blackberry10","wp7","wp8","windows8","windows","browser"],"engines":[],"englishdoc":"<!---\n    Licensed to the Apache Software Fo
+undation (ASF) under one\n    or more contributor license agreements.  See the NOTICE file\n    distributed with this work for additional informa
+tion\n    regarding copyright ownership.  The ASF licenses this file\n    to you under the Apache License, Version 2.0 (the\n    \"License\"); yo
+u may not use this file except in compliance\n    with the License.  You may obtain a copy of the License at\n\n      http://www.apache.org/licen
+ses
+ ERR! registry error parsing json
+Fetching plugin "org.apache.cordova.device" via npm
+npm http GET https://registry.npmjs.org/org.apache.cordova.device
+npm Fetching from npm failed: 404 Not Found: org.apache.cordova.device
+Updated the hooks directory to have execute permissions
+running cordova plugin add org.apache.cordova.console
+WARNING: org.apache.cordova.console has been renamed to cordova-plugin-console. You may not be getting the latest version! We suggest you `cordov
+a plugin rm org.apache.cordova.console` and `cordova plugin add cordova-plugin-console`.
+Fetching plugin "org.apache.cordova.console" via cordova plugins registry
+npm http GET http://registry.cordova.io/org.apache.cordova.console
+npm http 200 http://registry.cordova.io/org.apache.cordova.console
+npm http GET http://cordova.iriscouch.com/registry/_design/app/_rewrite/org.apache.cordova.console/-/org.apache.cordova.console-0.2.13.tgz
+npm http 200 http://cordova.iriscouch.com/registry/_design/app/_rewrite/org.apache.cordova.console/-/org.apache.cordova.console-0.2.13.tgz
+Saving plugin to package.json file
+Adding since there was no existingPlugin
+Updated the hooks directory to have execute permissions
+running cordova plugin add com.ionic.keyboard
+Fetching plugin "com.ionic.keyboard" via cordova plugins registry
+npm http GET http://registry.cordova.io/com.ionic.keyboard
+npm http 200 http://registry.cordova.io/com.ionic.keyboard
+npm http GET http://cordova.iriscouch.com/registry/_design/app/_rewrite/com.ionic.keyboard/-/com.ionic.keyboard-1.0.4.tgz
+npm http 200 http://cordova.iriscouch.com/registry/_design/app/_rewrite/com.ionic.keyboard/-/com.ionic.keyboard-1.0.4.tgz
+Saving plugin to package.json file
+Adding since there was no existingPlugin
+
+Your Ionic project is ready to go! Some quick tips:
+
+ * cd into your project: $ cd myApp
+
+ * Setup this project to use Sass: ionic setup sass
+
+ * Develop in the browser with live reload: ionic serve
+
+ * Add a platform (ios or Android): ionic platform add ios [android]
+   Note: iOS development requires OS X currently
+   See the Android Platform Guide for full Android installation instructions:
+   https://cordova.apache.org/docs/en/edge/guide_platforms_android_index.md.html
+
+ * Build your app: ionic build <PLATFORM>
+
+ * Simulate your app: ionic emulate <PLATFORM>
+
+ * Run your app on a device: ionic run <PLATFORM>
+
+ * Package an app using Ionic package service: ionic package <MODE> <PLATFORM>
+
+For more help use ionic --help or visit the Ionic docs: http://ionicframework.com/docs
+
++---------------------------------------------------------+
++ New Ionic Updates for May 2015
++
++ The View App just landed. Preview your apps on any device
++ http://view.ionic.io
++
++ Invite anyone to preview and test your app
++ ionic share EMAIL
++
++ Generate splash screens and icons with ionic resource
++ http://ionicframework.com/blog/automating-icons-and-splash-screens/
++
++---------------------------------------------------------+
+
+Create an ionic.io account to use the Ionic View app and other features?
+(Y/n): Y
+
+D:\HBuild_WorkSpace>cd myApp
+
+D:\HBuild_WorkSpace\myApp>ionic platform add android
+Updated the hooks directory to have execute permissions
+Downloading Default Ionic Resources
+
+Downloading: https://github.com/driftyco/ionic-default-resources/archive/master.zip
+[=============================]  100%  0.0s
+Done adding default Ionic resources
+Adding icons for platform: android
+running cordova platform add android
+npm http GET https://registry.npmjs.org/cordova-android/4.0.0
+npm http 200 https://registry.npmjs.org/cordova-android/4.0.0
+npm http GET https://registry.npmjs.org/cordova-android/-/cordova-android-4.0.0.tgz
+npm http 200 https://registry.npmjs.org/cordova-android/-/cordova-android-4.0.0.tgz
+Adding android project...
+Creating Cordova project for the Android platform:
+        Path: platforms\android
+        Package: com.ionicframework.myapp713401
+        Name: myApp
+        Activity: MainActivity
+        Android target: android-22
+Copying template files...
+Android project created with cordova-android@4.0.0
+Running command: "D:\Program Files\nodejs\node.exe" D:\HBuild_WorkSpace\myApp\hooks\after_prepare\010_add_platform_class.js D:\HBuild_WorkSpace\m
+yApp
+add to body class: platform-android
+Installing "com.ionic.keyboard" for android
+Installing "org.apache.cordova.console" for android
+Saving platform to package.json file
+
+D:\HBuild_WorkSpace\myApp>

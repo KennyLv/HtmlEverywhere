@@ -1,0 +1,471 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/res/doubanFM_wubin.css" />
+
+	<style>
+
+	body { background-image: url(/res/images/form.png); }
+	#splash {position: absolute; top:6px; left:6px; padding:0; width: 300px; height: 480px; overflow: hidden; border:none; z-index: 999; background: #ccc; background-image:url(/res/images/splash.png);  behavior: windowCommand; cursor: move;}
+	#main_close {position: absolute; top:9px; right:9px; width:20px; height: 20px; background-image: url(/res/images/close-button.png); behavior: button; cursor: pointer;}
+
+	#wrapper { margin: 6px; padding:0; width: 300px; height: 480px; overflow: hidden; border:none; }
+	#wrapper2 {width:299px; height:480px; overflow: hidden; border:0; padding:0; margin: 0;}
+	
+	/* 被侧滑的主面板 */
+	#slider {margin:0 0 0 -6px; padding:0; width:306px; height:445px; overflow:hidden; border:none; position: relative; background-image: url(/res/images/slider.png);}
+
+	/* 用于移动窗体 */
+	.window-mover { behavior: windowCommand; cursor: move;}
+
+	/* 标题栏 */
+	#title-bar { position: relative; width:300px; height:35px; margin:0; padding:0; border:none; cursor: move; border: none; overflow:hidden; behavior: windowCommand; background: #fff; z-index: 9;} 
+	#title-bar span.title { font: system; margin:0; color: #fff; } 
+	#title-bar #doubanLogo{width:70px; height: 18px; overflow: hidden; position: absolute; top:8px; left: 5px; background: url(/res/images/logo.png); }
+
+	#title-bar .ctrl-bar { position: absolute; top: 0; right: 0; width: 66px; height:35px; flow: horizontal; cursor: default;}
+	#title-bar .ctrl-bar a , #title-bar .ctrl-bar div { display: block; height: 35px; padding:0; margin: 0; overflow:hidden; }
+
+	/* 关闭按钮 */
+	#title-bar a[command=window-close] { width: 22px; background: url(/res/images/close_a.png) no-repeat; }
+	#title-bar a[command=window-close]:hover { background: url(/res/images/close_b.png) no-repeat; transition: blend;}
+	#title-bar a[command=window-close]:active { background: url(/res/images/close_c.png) no-repeat; }
+
+	/* 最小化按钮 */
+	#title-bar a[command=window-min] { width: 22px; background: url(/res/images/min_a.png) no-repeat; }
+	#title-bar a[command=window-min]:hover { background: url(/res/images/min_b.png) no-repeat; transition: blend;}
+	#title-bar a[command=window-min]:active { background: url(/res/images/min_c.png) no-repeat; }
+
+	/* 配置菜单 */
+	#title-bar div#cfg-menu { behavior: popup-menu; width: 22px; background: url(/res/images/menu_a.png) no-repeat; }
+	#title-bar div#cfg-menu:hover { background: url(/res/images/menu_b.png) no-repeat; transition: blend;}
+	#title-bar div#cfg-menu:active { background: url(/res/images/menu_c.png) no-repeat; }
+
+	#hotkeyTitle {cursor: help;}
+
+	/* 登录按钮 */
+	#title-bar #showLoginForm {width: 110px; height: 16px; overflow: hidden; margin: 10px 0 10px 95px;display: block; background: url(/res/images/login_a.png) no-repeat; padding: 0 0 0 20px; font-size: 12px; line-height: 14px; color:#979797; cursor: pointer; behavior: button;}
+	#title-bar #showLoginForm:hover { background: url(/res/images/login_b.png) no-repeat; color:#67bea4; transition: blend;}
+	#title-bar #showLoginForm:active { background: url(/res/images/login_c.png) no-repeat; color:#000;}
+
+	/* 第二行 频道选择 专辑封面 / 播放列表 */
+	#neck {width: 300px; height: 40px; overflow: hidden; margin:0 0 0 6px; padding:0; border: none;}
+
+	/* 频道选择 */
+	#neck #channels {margin: 6px 5px 4px 8px; padding:5px 5px 3px 5px; width: 80px; height: 20px; float:left; overflow: hidden; background: url(/res/images/channels_a.png) no-repeat; color:#fff; font-size: 14px; line-height: 18px; font-weight: bold; cursor: pointer; behavior: button; overflow:hidden; white-space: nowrap; text-overflow: ellipsis;}
+	#neck #channels:hover {background: #757575 url(/res/images/channels_b.png) no-repeat; transition: blend;}
+	#neck #channels:active {background: #282828 url(/res/images/channels_b.png) no-repeat;}
+
+	/* 加歌按钮 */
+	#neck #toAddMusic {width: 58px; height: 28px; margin:6px 0 4px 10px; float:left; overflow: hidden; background: url(/res/images/toAddMusic_a.png); cursor: pointer; display:none; behavior: button;}
+	#neck #toAddMusic:hover {background: #757575 url(/res/images/toAddMusic_b.png); transition: blend;}
+	#neck #toAddMusic:active {background: #282828 url(/res/images/toAddMusic_b.png);}
+
+	/* 专辑封面 / 播放列表 选项卡 */
+	#tabs { behavior: tabs; }
+	#tabs .strip {position: absolute; top: 11px; left: 242px; width: 58px; height: 29px; overflow: hidden; }
+	#tabs .strip [panel] {width: 22px; height:29px; overflow:hidden; cursor: pointer; }
+	/* 专辑封面 / 播放列表 区域 */
+	#tabs > [name] {display: none; width: 300px; height: 270px; overflow: hidden;}
+	#tabs > [name][selected] {display: block;}
+	/* 选项卡 图标 */
+	#tabs .strip [panel=album] {background: url(/res/images/panel-album_a.png) no-repeat; margin-right: 5px; float:left;}
+	#tabs .strip [panel=album]:hover {background: url(/res/images/panel-album_b.png) no-repeat; transition: blend;}
+	#tabs .strip [panel=album][selected] {background: url(/res/images/panel-album_c.png) no-repeat; }
+	#tabs .strip [panel=playlist] {background: url(/res/images/panel-playlist_a.png) no-repeat; margin-right: 0; float:right;}
+	#tabs .strip [panel=playlist]:hover {background: url(/res/images/panel-playlist_b.png) no-repeat; transition: blend; }
+	#tabs .strip [panel=playlist][selected] {background: url(/res/images/panel-playlist_c.png) no-repeat; }
+	#album_area {hover-on!:toggleControls("show");hover-off!:toggleControls("hide");}
+	/* 专辑封面图像 */
+	#album_cover_wrapper {size: 180px; position: absolute; top:21px; left:66px; overflow:hidden; background: url(/res/images/album_cover_wrapper.png)}
+	#song-loading {size: 180px; position: absolute; top:3px; left:3px; z-index: 990; display:none;}
+	#album_cover {size: 180px; position: absolute; top:0; left:0; background: url(/res/images/album-cover.png) no-repeat 15px 15px; foreground:none; z-index: 99; cursor: pointer; behavior:button; context-menu: selector(menu#album-menu); }
+	#album_cover:hover {opacity: 0.65}
+	#album_image {size:148px; margin:*; background-repeat:stretch keep-ratio; background-position: 50% 50%; background-image: none; border-radius:50%; overflow:hidden;}
+	
+	#controls {position: absolute; top:51px; left:232px; width:24px; height:120px; overflow:hidden; display:none;}
+	#controls #play_album, #controls #play_artist, #controls #play_single {size:24px; cursor: pointer; opacity: 0.8; margin-bottom: 24px; behavior:button;}
+	#controls #play_album:hover, #controls #play_artist:hover, #controls #play_single:hover {opacity: 1;}
+	#controls #play_album {background:url(/res/images/play-album_a.png); }
+	#controls #play_artist {background:url(/res/images/play-artist_a.png); }
+	#controls #play_single {background:url(/res/images/play-single_a.png);}
+
+	#tip {background: url(/res/images/tip_icons.png) 5px 0 no-repeat;padding:0 5px 0 28px; font-size:14px; line-height: 28px;}
+	#tip_title {color:#000;}
+	#tip_artist, #tip_album {color:#787878;}
+
+	/* 曲目标题和作者 */
+	#song_info_wrapper {width:290px; height: auto; position: absolute; top:210px; left:11px; overflow:hidden; padding:6px 0 0 0; margin:0; context-menu: selector(menu#album-menu);}
+	#song_info_wrapper:hover{background-image:url(/res/images/playlist-ul-bg.png);}
+	#song_title {width:290px; margin:0; padding:0; overflow:hidden; display:block; text-align:center; font-size: 23px; font-family: "Kartika"; color:#606060; white-space: nowrap; text-overflow: ellipsis; behavior: button; cursor: pointer; }
+	#artist {width:290px; padding:0;  overflow:hidden; display:block; text-align:center; margin:6px auto 0 auto; font-size: 14px; font-family: "Kartika"; color:#999;}
+	#menuArtist {display:block; width:104px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+
+	/* 喜欢 删除 下一首 */
+	#attitude {width:300px; height: 52px; margin: 18px 0 0 6px; }
+	#attitude a {display: block; width: 58px; height: 52px; overflow: hidden; float: left; }
+	#attitude #like_liked {margin: 0 0 0 36px; width: 58px; height: 52px; overflow: hidden; float: left; display: block; behavior: button; context-menu: selector(menu#auto_like);}
+	#attitude #like_liked #toLike {background: url(/res/images/like_a.png); }
+	#attitude #like_liked #toLike:hover {background: url(/res/images/like_b.png); cursor: pointer; transition: blend;}
+	#attitude #like_liked #toLike:active {background: url(/res/images/like_c.png);}
+	/*#attitude #like_liked img {width:40px; height:40px; margin:5px 0 0 9px; }*/
+	#attitude #like_liked #liked {background: url(/res/images/liked_a.png); }
+	#attitude #like_liked #liked:hover {background: url(/res/images/liked_b.png); cursor: pointer; transition: blend;}
+	#attitude #like_liked #liked:active {background: url(/res/images/liked_c.png); }
+	#attitude #toDel {background: url(/res/images/del_a.png); margin: 0 0 0 29px; behavior: button; context-menu: selector(menu#auto_del);}
+	#attitude #toDel:hover {background: url(/res/images/del_b.png); cursor: pointer; transition: blend;}
+	#attitude #toDel:active {background: url(/res/images/del_c.png);}
+	#attitude #toNext {background: url(/res/images/next_a.png); margin: 0 0 0 28px;  behavior: button;}
+	#attitude #toNext:hover {background: url(/res/images/next_b.png); cursor: pointer; transition: blend;}
+	#attitude #toNext:active {background: url(/res/images/next_c.png);}
+
+	/* loading 盖住 喜欢、删除、下一首 按钮 */
+	#loading-cover {background-image: url(/res/images/loading-cover.png); position: absolute; top:326; left:7px; width: 300px; height:56px; display: block;}
+
+	/* 播放进度条 */
+	#postBar_hslider {background: transparent; position: absolute; top:395; left:2px; width: 300px; height:20px; cursor: pointer;}
+	#postBar_hslider img {display: none; width:20px; height:20px; overflow: hidden;}
+	#postBar_hslider:hover img {display: block; background-color: transparent; foreground-image: url(/res/images/posBar_b.png); }
+	#posBar {width: 0; height: 4px; overflow:hidden; margin: 25px 0 0 6px; background: #298c6e;}
+
+	/* 最底部 */
+	#footer {width:300px; height: 35px; overflow: hidden; margin-left:6px;}
+	#footer a, #footer div, #footer span {float: left;}
+	/* 播放 暂停 按钮 */
+	#footer #pause_play {width:15px; height: 15px; margin: 10px 0 0 10px; overflow: hidden; behavior: button;}
+	#footer #pause_play #toPause {width:15px; height: 15px; display:block; background: url(/res/images/pause_a.png);}
+	#footer #pause_play #toPause:hover {background: url(/res/images/pause_b.png); cursor: pointer; transition: blend;}
+	#footer #pause_play #toPause:active {background: url(/res/images/pause_c.png); }
+	#footer #pause_play #toPlay {width:15px; height: 15px; display:block; background: url(/res/images/play_a.png);}
+	#footer #pause_play #toPlay:hover {background: url(/res/images/play_b.png); cursor: pointer; transition: blend;}
+	#footer #pause_play #toPlay:active {background: url(/res/images/play_c.png); }
+	/* 当前播放进度时间显示 */
+	#footer #posLabel {color:#45a588; font-size: 12px; font-family: "Courier"; line-height:16px; margin:11px 0 0 14px; width:90px; height:16px;}
+	/* 显示歌词按钮 */
+	#footer #showLrc {width:21px; height:22px; margin:7px 0 0 8px; display:block; foreground-image: url(/res/images/lrc_0_off.png); behavior: button; cursor: pointer; behavior:button;}
+	#footer #showLrc:hover {background: #c6ece1; transition: blend;}
+	/* 静音 按钮 */
+	#footer #toMute {width:19px; height: 23px; margin:6px 0 0 18px; display:block; background: url(/res/images/toMute_2.png); behavior: button;}
+	#footer #toMute:hover {cursor: pointer; }
+	/* 音量控制 滑块 */
+	#footer #volumeBar {width:0; height:3px; overflow: hidden; margin: 0 0 0 5px; background: #67bea4; }
+	#footer #volumeBar_hslider {width:58px; height:20px; position: absolute; top:5px; left:198px; background: transparent; cursor: pointer;}
+	#footer #volumeBar_hslider img {display: none; width:10px; height:20px; overflow:hidden;}
+	#footer #volumeBar_hslider:hover img {display: block; background-color: #288b6d; foreground-image: none; }
+	/* 武斌logo */
+	#footer #wubin {size:20px; overflow: hidden; position: absolute; top:8px; left:271px; background: url(/res/images/wubin_a.png); behavior: button;}
+	#footer #wubin:hover {background: url(/res/images/wubin_b.png); cursor: pointer; transition: blend;}
+	#footer #wubin:active {background: url(/res/images/wubin_c.png);}
+
+	/* 主面板右滑后显示的频道列表 */
+
+	#channels-list {width:204px; height: 418px; padding :10px 5px 6px 10px; overflow: hidden; position: absolute; top:41px; left:4px; display:none; }
+	#channels-list:hover {background:url(/res/images/playlist-ul-bg.png) ;}
+	
+	#channels-head { width:200px; height:40px; margin-bottom: 16px;}
+	#channels-head #clike, #channels-head #cprivate {float:left; width:76px; font-size:16px; padding:11px 12px 13px 12px; overflow:hidden; cursor: pointer; margin-bottom: 10px; behavior:button;}
+	.clike-normal {background: rgba(209,164,150,0.2); height:16px; border-bottom:none; color:#4b4b4b;}
+	.clike-normal:hover{background: rgba(209,164,150,0.6); color:#000;}
+	.clike-selected {background: #D1A496; height:12px; border-bottom: 4px solid #B97760; color:#693E2E;}
+	.cprivate-normal {background: rgba(142,172,197,0.2); height:16px; border-bottom:none; color:#4b4b4b;}
+	.cprivate-normal:hover {background: rgba(142,172,197,0.6); color:#000;}
+	.cprivate-selected {background: #8EACC5; height:12px; border-bottom:4px solid #5B88AA; color:#2C4657;}
+
+	#channels-tabs {behavior: tabs; }
+	#channels-tabs .strip { overflow: hidden; width:100%; height:30px; font-size: 14px; color:#3c3c3c;}
+	#channels-tabs .strip [panel] { overflow:hidden; cursor: pointer; border-bottom: 1px solid #9FCDC1;text-align: center; padding-bottom: 4px; height:18px;}
+
+	/* 专辑封面 / 播放列表 区域 */
+	#channels-tabs > [name] {display: none; width:200px; height:334px; overflow: auto; vertical-scrollbar: mini_scrollbar; }
+	#channels-tabs > [name][selected] {display: block;}
+
+	/* 选项卡 图标 */
+	#channels-tabs .strip [panel=public] {float:left; width:70px;}
+	#channels-tabs .strip [panel=public]:hover { transition: blend;}
+	#channels-tabs .strip [panel=public][selected] {border-bottom: 4px solid #90BE7F; color:#5B8D48; height:15px;}
+	#channels-tabs .strip [panel=fav] {float:left; width:70px;}
+	#channels-tabs .strip [panel=fav]:hover { transition: blend; }
+	#channels-tabs .strip [panel=fav][selected] { border-bottom: 4px solid #90BE7F; color:#5B8D48; height:15px;}
+	#channels-tabs .strip [panel=search] {float:left; width:60px; background: url(/res/images/channels_search_a.png) 25px 3px no-repeat; }
+	#channels-tabs .strip [panel=search]:hover { transition: blend; }
+	#channels-tabs .strip [panel=search][selected] { border-bottom: 4px solid #90BE7F; height:15px;background: url(/res/images/channels_search_c.png) 25px 3px no-repeat; }
+
+	/* 频道列表 */
+	#channels-list-ul {margin: 0; padding: 5px; width:155px;}
+	#channels-list-ul li {list-style:none; display: block; padding: 4px; margin:5px 0 15px 0; width: 157px; border:1px dotted #fff; color:#3c3c3c; font-size:16px;}
+	#channels-list-ul li:hover {background: #c2f0e3; color:#000; /*transition: blend;*/ outline:none;}
+	#channels-list-ul li span {width:157px; display:block; behavior: button; padding:4px; cursor: pointer; }
+	#channels-list-ul hr {width:172px; border-top: #29a783 solid 1px; border-bottom: none; margin:0 0 16px 0;}
+	.channel-selected {background:#a8e6d4 url(/res/images/channel_current.gif) 145px 7px no-repeat;}
+
+	/* 频道搜索 */
+	#search_box {margin:6px; width:100%%; overflow: hidden;}
+	#leftSearch {behavior: button;}
+	#searchResult, #favResult {width:100%%; padding:0; overflow:auto; vertical-scrollbar: mini_scrollbar;}
+	#searchResult { margin:12px 1px 6px 6px; height:278px;}
+	#favResult { margin:6px 1px 6px 6px; height:316px;}
+	#searchTip, #favTip {text-align: center; font-size: 12px; line-height: 20px; color:#666; margin-top: 4px;}
+	.searchArtist, .searchChannel {width:100%%; height:28px; margin:0 5px 10px 0; padding-left:38px; border: 1px solid #7acab3; font-size: 14px; line-height: 28px; overflow:hidden; color:#2b2b2b; cursor: pointer; behavior:button; position: relative;}
+	.searchArtist {background: url(/res/images/search_artist.png) no-repeat;}
+	.searchChannel {background: url(/res/images/search_channel.png) no-repeat;}
+	.searchAlbum {width:100%%; height:60px; margin:0 5px 10px 0; border: 1px solid #7acab3; overflow:hidden;color:#2b2b2b; cursor: pointer; behavior:button; position: relative;}
+	.searchPic {float:left; width:60px; height:60px; background-color: #58b197; overflow:hidden;}
+	.searchPic img {size:60px; foreground-repeat:stretch keep-ratio; foreground-position: 50% 50%;}
+	.searchAlbum_1 {margin-left:70px; font-size: 14px; width:100%%; margin-top: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+	.searchAlbum_2 {margin-left:70px; font-size: 10px; width:100%% margin-10px; overflow:hidden; white-space: nowrap; text-overflow: ellipsis;}
+	.searchArtist:hover, .searchChannel:hover, .searchAlbum:hover {color:#000; border:1px solid #369579; background-color: #fff;}
+	.searchNow {background-color: #B0D7CA}
+	#searchLoading {padding-top: 24px; margin:10px auto; width:100px; color:#2b2b2b; font-size: 12px; background: url(/res/images/listAddLoading.png) 20px 0 no-repeat; text-align: center;}
+	#searchLoading2 {padding:0; margin:10px auto; width:100px; color:#2b2b2b; font-size: 12px; text-align: center;}
+	#searchPage {margin:15px auto 0 auto; width:130px; height:22px; padding:0; overflow: hidden; }
+	#searchPre, #searchNext {float:left; width:57px; height:22px; padding:0; overflow: hidden; cursor: pointer; behavior:button;}
+	#searchPre {background: url(/res/images/pre_page_a.png) 0 1px no-repeat; margin:0;}
+	#searchPre:hover {background: url(/res/images/pre_page_b.png) 0 0 no-repeat;}
+	#searchPre:active {background: url(/res/images/pre_page_c.png) 0 0 no-repeat;}
+	#searchNext {background: url(/res/images/next_page_a.png) no-repeat; margin-left:16px;}
+	#searchNext:hover {background: url(/res/images/next_page_b.png) no-repeat;}
+	#searchNext:active {background: url(/res/images/next_page_c.png) no-repeat;}
+	.favDel {position: absolute; size:19px; right:5px; top:5px; overflow: hidden; margin:0; padding:0; cursor:pointer; behavior:button; background: url(/res/images/fav_del_a.png) no-repeat; display: none;}
+	.favDel:hover {background: url(/res/images/fav_del_b.png) no-repeat;}
+	.favDel:active {background: url(/res/images/fav_del_c.png) no-repeat;}
+	.searchArtist:hover .favDel, .searchChannel:hover .favDel, .searchAlbum:hover .favDel {display: block;}
+	
+	/* 曲目列表 */
+	#listbox {margin:15px 15px 15px 21px; width:264px; height:245px; overflow:vertical; vertical-scrollbar: mini_scrollbar; background:#fff; border:1px solid #a1d7c8; cursor: default; context-menu: selector(menu#listbox-menu);}
+	#listbox option {background: #fff; padding: 0; width:254px; overflow: hidden; border-bottom:1px #a1d7c8 dashed;}
+	#listbox option:hover {background: #ffece6;}
+	#listbox option:current {background: #f1d6cc; color:#000;}
+	#listbox option p {margin: 0; padding: 6px; overflow: hidden; width:242px;}
+	#listbox option p .list-info {font-size:12px; color:#626262; white-space: nowrap; text-overflow: ellipsis; width:220px; display: inline-block; overflow: hidden; float:left;}
+	#listbox option p .list-title {font-size:16px; color:#000; margin:2px 0 0 0; white-space: nowrap; text-overflow: ellipsis; width:220px; display: inline-block;  overflow: hidden; float:left;}
+	#listbox .rightWrapper { float:right; margin:4px 3px 0 0; width:13px; height:30px; padding:0; overflow: hidden; }
+	.list-like, .list-liked, .list-like-loading {width:13px; height:30px; margin:0; padding:0; overflow:hidden; cursor: pointer; behavior:button; display: block; }
+	.list-like {background:url(/res/images/like-small_a.png) no-repeat 0 0;}
+	.list-like:hover {background:url(/res/images/like-small_b.png) no-repeat 0 0;}
+	.list-liked {background:url(/res/images/liked-small_a.png) no-repeat 0 0;}
+	.list-liked:hover {background:url(/res/images/liked-small_b.png) no-repeat 0 0;}
+	.list-like-loading {background:url(/res/images/like-small-loading.png) no-repeat 0 0;}
+	.list-now {background: #a8e6d4 url(/res/images/channel_current.gif) 233px 28px no-repeat}
+	.list-loading {background:url(/res/images/list-loading.png) 210px 7px no-repeat;}
+
+	#toHistory {width:242px; height: 19px; overflow: hidden; background: url(/res/images/toHistory_a.png) 0 -1px no-repeat; cursor: pointer; behavior:button; }
+	#toHistory:active { background: url(/res/images/toHistory_c.png) 0 -1px no-repeat; }
+
+	#listToAdd {width:242px; height: 19px; overflow: hidden; background: url(/res/images/listToAdd_a.png) 50% 50% no-repeat; cursor: pointer; behavior:button; }
+	#listToAdd:active { background: url(/res/images/listToAdd_c.png) 50% 50% no-repeat; }
+
+	/* 曲目列表右键菜单 */
+
+	</style>
+</head>
+
+<body>
+	<div id="splash" command="window-caption">
+		<a id="main_close">&nbsp;</a>
+	</div>
+	<div id="wrapper">
+		<div id="title-bar" command="window-caption">
+			<div id="doubanLogo">&nbsp;</div>
+			<div id="showLoginForm" title="登陆后可使用加红心、红心兆赫等功能">
+				<span id="userName">&nbsp;</span>
+				<menu .popup> <!-- .popup是内置的弹出菜单样式 -->
+					<li id="toFavChannel" class="first">收听红心兆赫</li>
+					<li id="toHistory2">我的收听历史</li>
+	    			<li id="myDouban">我的豆瓣</li>
+	    			<hr />
+	    			<li id="toLogout" class="last">退出登录</li>
+  				</menu>				
+			</div> <!-- 登录按钮 / 显示用户名 -->
+			<div class="ctrl-bar">
+				<div id="cfg-menu" title="菜单">
+					<menu .popup> <!-- .popup是内置的弹出菜单样式 -->
+	    				<p>界面开关与窗口</p>
+	    				<li id="displayLrc"><span class="menu-switch" id="isDisplayLrc">桌面歌词</span></li>
+	    				<li id="displayFFT" title="需要消耗一定的CPU"><span class="menu-switch" id="isDisplayFFT">音乐频谱</span></li>
+	      				<li id="popWin" ><span class="menu-switch" id="isEnablePopWin">右下角弹窗</span></li>
+	    				<li id="doAero" title="需系统支持（如win7等）"><span class="menu-switch" id="isEnableAero">玻璃效果</span></li>
+	    				<hr />
+	    				<li id="openDownloads">查看下载任务</li>
+	    				<li id="toHistory2" class="last">我的收听历史</li>
+	    				<p>设置...</p>
+						<li id="showEQForm"><span>设置均衡器</span></li>
+	    				<li id="showHotkeySetups"><span id="hotkeyTitle">设置热键</span></li>
+	    				<li id="showFontsSetups">设置歌词字体</li>
+	    				<li id="randomSongs"><span class="menu-switch" id="isRandomSongs" title="在获取豆瓣播放列表后乱序排列：&#13;这在收听红心兆赫时特别有用，&#13;再也不用每次都从那几首歌开始了。">乱序排列歌曲</span></li>
+	    				<li id="playSingle"><span class="menu-switch" id="isPlaySingle" title="[下一首]时恢复顺序播放">本首单曲循环</span></li>
+	    				<li id="showAutoLikeDel" class="last" title="右击下方[红心]或[删除]图标">自动加红心或屏蔽</li>
+	    				<p>斌哥豆瓣FM桌面版</p>
+	    				<li id="showAbout" title="版本号">关于本软件</li>
+	    				<li id="home" title="反馈请加群：3424 9481 9">软件主页 / 使用说明</li>
+	    				<li id="doubanFM">豆瓣FM官方</li>
+	    				<hr />
+	    				<li id="exit" class="last">退出</li>
+  					</menu>
+				</div>
+				<a command="window-min" title="最小化">&nbsp;</a><a command="window-close" id="exit-titleBar" title="退出">&nbsp;</a><!-- 不可分为两行写 -->
+			</div>
+		</div>
+		<div id="channels-list">
+			<div id="channels-head">
+				<div id="clike" class="clike-normal">红 心 兆 赫</div>
+				<div id="cprivate" class="cprivate-normal">私 人 兆 赫</div>
+			</div>
+			<div id="channels-tabs">
+				<div class="strip"> <!-- 类名 strip 不可更改 选项卡 图标-->
+					<div panel="public" selected="true" id="publicTab" title="常用的公共频道">常&nbsp;&nbsp;用</div>
+					<div panel="fav" id="favTab" title="我收藏的频道">我&nbsp;&nbsp;的</div>
+					<div panel="search" id="searchTab" title="搜索频道、艺术家及专辑">&nbsp;</div>
+				</div>
+				<div name="public" selected="true" id="publicChannels">
+					<ul id="channels-list-ul">
+						<include src="channels.html">暂无频道</include>
+					</ul>
+				</div>
+				<div name="fav" id="favChannels">
+					<div id="favResult">
+						<div id="favTip">还没有收藏哦~<br />尝试右边的搜索功能</div>
+					</div>
+				</div>
+				<div name="search" id="searchChannels">
+					<include src="search-box.html"></include>
+					<div id="searchResult">
+						<div id="searchTip">可以搜索频道、歌手、专辑<br />请勿频繁搜索，以免被豆瓣屏蔽<br />搜索结果已被精简<br />如果没有，可能需要看下一页</div>
+					</div>	
+				</div>	
+			</div>
+		</div>
+		<div id="wrapper2">
+		<div id="slider">
+			<div id="tabs"> <!-- 选项卡 容器 -->
+				
+				<div id="neck"> <!-- 第二行 频道选择 加歌按钮 -->
+					<div id="channels"> <!--频道选择 -->
+						<span id="channel-name" title="选择频道">选择频道</span>
+					</div>
+					<a id="toAddMusic">&nbsp;</a>
+				</div>
+				<div class="strip"> <!-- 类名 strip 不可更改 选项卡 图标-->
+					<div panel="album" selected="true" id="albumIcon" title="专辑封面">&nbsp;</div>
+					<div panel="playlist" id="playlistIcon" title="播放列表">&nbsp;</div>
+				</div>
+				<!-- 选项卡面板 -->
+				<!-- 专辑封面和标题 -->
+				<div name="album" id="album_area" selected="true" class="window-mover" command="window-caption">
+					<div id="album_cover_wrapper">
+						<img id="song-loading" src="images/songLoading.png" width="180" height="180" />
+						<div id="album_cover" titleid="album_tip">&nbsp;</div>
+						<div id="album_image">&nbsp;</div>
+					</div>
+					<div id="controls">
+						<div id="play_artist">&nbsp;</div>
+						<div id="play_album">&nbsp;</div>
+						<div id="play_single" title="单曲循环&#13;[下一曲]时恢复顺序播放">&nbsp;</div>
+					</div>
+					<popup id="album_tip" class="tip">
+						<div id="tip">
+							<span id="tip_title">..</span><br />
+							<span id="tip_artist">..</span><br />
+							<span id="tip_album">..</span>
+						</div>
+						<hr />左键查看简介<br />右键打开菜单
+					</popup>
+					<menu.context id="album-menu">
+						<p>保存乐曲</p>
+						<li id="saveMusic" class="first">另存为</li>
+						<li id="openDownloads">查看下载任务</li>
+						<li id="saveLrc" title="如果已搜索到歌词..." class="last">保存歌词
+							<menu>
+								<li id="saveLrc_copy">复制到剪贴板</li>
+								<li id="saveLrc_copytext">仅复制歌词文本</li>
+								<hr />
+								<li id="saveLrc_file">另存为lrc文件</li>
+								<li id="withLrc" title="下载歌曲同时保存lrc文件"><span class="menu-switch" id="isWithLrc">同时下载歌词</span></li>
+							</menu>
+						</li>
+						<hr />
+						<li id="copyTitle">复制曲目名称</li>
+						<li id="baidu" class="last">百度搜索此音乐</li>
+						<p>收藏到我的频道</p>
+						<li id="addFavArtist">收藏艺术家</li>
+						<li id="addFavAlbum" class="last">收藏专辑</li>
+						<p><span id="menuArtist">艺术家...</span></p>
+						<li id="musician">转到艺术家简介</li>
+						<li id="musician_copy">复制艺术家名称</li>
+						<li id="baidu_img" class="last">百度艺术家图片</li>
+					</menu>
+					<div id="song_info_wrapper" title="左键查看简介&#13;右建打开菜单">
+						<div id="song_title">欢 迎 使 用</div>
+						<div id="artist">正在准备音乐 ...</div>
+					</div>
+				</div>
+				<!-- 播放列表 -->
+				<div name="playlist" id="playlist" class="window-mover" command="window-caption">
+					<select id="listbox" size="5">
+					</select>
+				</div>
+				<menu.context id="listbox-menu">
+					<li id="saveMusic_2" class="first">另存为</li>
+					<li id="openDownloads">查看下载任务</li>
+					<hr />
+					<li id="copyTitle_2">复制曲目名称</li>
+					<li id="baidu_2">百度搜索此音乐</li>
+					<hr />
+					<li id="addFavArtist_2">收藏艺术家</li>
+					<li id="addFavAlbum_2">收藏专辑</li>
+					<hr />
+					<li id="toDoubanAlbum">转到专辑详情</li>
+					<li id="baidu_img2">百度艺术家图片</li>
+					<hr />
+					<li id="toDel_2" class="last">不再听之</li>
+				</menu>
+			</div>
+			<!-- 喜欢 删除 下一首 -->
+			<div id="attitude">
+				<div id="like_liked" titleid="like_tip"><a id="toLike">&nbsp;</a></div>
+				<a id="toDel" titleid="del_tip">&nbsp;</a>
+				<a id="toNext" title="下一首">&nbsp;</a>
+				<div class="clear"></div>
+				<menu.context id="auto_like">
+					<p>自动加红心</p>
+					<li id="likeByArtist"><span class="menu-switch" id="isLikeByArtist">他/她的歌</span></li>
+					<li id="likeByAlbum"><span class="menu-switch" id="isLikeByAlbum">这张专辑的歌</span></li>
+					<hr />
+					<li id="showAutoLikeDel" class="last">更多设置 ...</li>
+				</menu>
+				<popup id="like_tip" class="tip">
+					喜欢 / 取消 [ <span id="like_hotkey">热键</span> ]<br />
+					右键：设置自动加红心
+				</popup>
+				<menu.context id="auto_del">
+					<p>自动屏蔽</p>
+					<li id="delByArtist"><span class="menu-switch" id="isDelByArtist">他/她的歌</span></li>
+					<li id="delByAlbum"><span class="menu-switch" id="isDelByAlbum">这张专辑的歌</span></li>
+					<li id="delEnglish"><span class="menu-switch" id="isDelEnglish" title="仅在部分频道中有效">英文歌曲 (?)</span></li>
+					<hr />
+					<li id="showAutoLikeDel" class="last">更多设置 ...</li>					
+				</menu>
+				<popup id="del_tip" class="tip">
+					不再听之 [ <span id="del_hotkey">热键</span> ]<br />
+					右键：设置自动屏蔽
+				</popup>
+			</div>
+			<div id="loading-cover">&nbsp;</div>
+			<!-- 播放进度条 -->
+			<input id="postBar_hslider" type="hslider" min="0" max="300" value="0" />
+			<div id="posBar">
+				&nbsp;
+			</div>
+			<!-- 最底部 暂停按钮 时间显示 音量 -->
+			<div id="footer">
+				<div id="pause_play"><a id="toPause">&nbsp;</a></div>
+				<span id="posLabel">--:-- / --:--</span>
+				<a id="showLrc" title="歌词">&nbsp;</a>
+				<a id="toMute">&nbsp;</a>
+				<div id="volumeBar">&nbsp;</div>
+				<input id="volumeBar_hslider" type="hslider" min="0" max="58" value="0" />
+				<a id="wubin" title="软件主页 / 使用说明&#13;反馈请加群：3424 9481 9">&nbsp;</a>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>
